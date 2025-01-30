@@ -1,6 +1,6 @@
-import React from 'react';
-import { useCart } from '../context/CartContext';
-import { X, Send, Plus, Minus } from 'lucide-react';
+import React from "react";
+import { useCart } from "../context/CartContext";
+import { X, Send, Plus, Minus } from "lucide-react";
 
 interface CartProps {
   onClose?: () => void;
@@ -13,37 +13,44 @@ export const Cart: React.FC<CartProps> = ({ onClose }) => {
 
   const handleCheckout = () => {
     const message = `Olá! Gostaria de fazer um pedido:\n\n${cart
-      .map((item) => `${item.quantity}x ${item.name} - R$ ${(item.price * item.quantity).toFixed(2)}`)
-      .join('\n')}\n\nTotal: R$ ${total.toFixed(2)}`;
+      .map(
+        (item) =>
+          `${item.quantity}x ${item.name} - R$ ${(
+            item.price * item.quantity
+          ).toFixed(2)}`
+      )
+      .join("\n")}\n\nTotal: R$ ${total.toFixed(2)}`;
 
-    const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    const whatsappUrl = `https://wa.me/558896109801?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappUrl, "_blank");
   };
 
   if (cart.length === 0) {
-    return (
-      <div className="p-4 text-center text-gray-500">
-        Carrinho vazio
-      </div>
-    );
+    return <div className="p-4 text-center text-gray-500">Carrinho vazio</div>;
   }
 
   return (
     <div className="p-4">
       <div className="lg:hidden mb-4 flex justify-end">
-        <button
-          onClick={onClose}
-          className="text-gray-500 hover:text-gray-700"
-        >
+        <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
           <X size={24} />
         </button>
       </div>
-      
+
       {cart.map((item) => (
-        <div key={item.id} className="flex flex-col mb-4 bg-white p-4 rounded-lg shadow">
+        <div
+          key={item.id}
+          className="flex flex-col mb-4 bg-white p-4 rounded-lg shadow"
+        >
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-3">
-              <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded" />
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-16 h-16 object-cover rounded"
+              />
               <div>
                 <h3 className="font-semibold">{item.name}</h3>
                 <p className="text-sm text-gray-600">
@@ -58,7 +65,7 @@ export const Cart: React.FC<CartProps> = ({ onClose }) => {
               <X size={20} />
             </button>
           </div>
-          
+
           <div className="flex items-center justify-between border-t pt-3">
             <div className="flex items-center gap-3">
               <button
@@ -67,7 +74,9 @@ export const Cart: React.FC<CartProps> = ({ onClose }) => {
               >
                 <Minus size={20} />
               </button>
-              <span className="w-8 text-center font-medium">{item.quantity}</span>
+              <span className="w-8 text-center font-medium">
+                {item.quantity}
+              </span>
               <button
                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
                 className="p-1 rounded-full hover:bg-gray-100"
@@ -81,7 +90,7 @@ export const Cart: React.FC<CartProps> = ({ onClose }) => {
           </div>
         </div>
       ))}
-      
+
       <div className="mt-4 border-t pt-4">
         <div className="text-xl font-bold mb-4">
           Total: R$ {total.toFixed(2)}
