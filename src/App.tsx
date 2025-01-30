@@ -74,7 +74,9 @@ function MainApp() {
               }}
             >
               <ShoppingBag size={24} />
-              <h1 className="text-2xl font-bold">Mercadinho Macaxeira!</h1>
+              <h1 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold">
+                Mercadinho Macaxeira!
+              </h1>
             </div>
 
             {/* Mobile menu butto */}

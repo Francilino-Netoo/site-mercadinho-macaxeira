@@ -7,5 +7,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ["lucide-react"],
   },
-  base: "site-mercadinho-macaxeira",
+  base: "/site-mercadinho-macaxeira",
 });
